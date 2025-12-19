@@ -1,175 +1,118 @@
-# Backend I - Coderhouse  
-## Entrega Nº2: Handlebars + WebSockets + Actualización en Tiempo Real
+# Backend Ecommerce – Entrega Final
 
-Este proyecto implementa un servidor Express con motor de plantillas **Handlebars**, integración de **Socket.io** y actualización en tiempo real de la lista de productos.
+Proyecto backend desarrollado en Node.js con Express y MongoDB para la gestión de productos y carritos de compra.
 
-La aplicación permite:
-
-- Visualizar productos desde archivos JSON  
-- Renderizar vistas con Handlebars  
-- Crear y eliminar productos  
-- Actualizar la vista automáticamente mediante WebSockets  
-- Mantener persistencia en archivos dentro de `/data`
+Esta entrega corresponde a la **Entrega Final**, incorporando persistencia en MongoDB mediante Mongoose y la implementación completa de endpoints para productos y carritos.
 
 ---
 
-## 📁 Estructura del proyecto
-
-BACKEND I/
-│ app.js
-│ package.json
-│ README.md
-│
-├── data
-│ ├── products.json
-│ └── carts.json
-│
-├── public
-│ └── js
-│ └── realtime.js
-│
-└── src
-├── managers
-│ ├── ProductManager.js
-│ └── CartManager.js
-│
-├── routes
-│ ├── products.router.js
-│ └── carts.router.js
-│
-└── views
-├── home.handlebars
-├── realTimeProducts.handlebars
-└── layouts
-└── main.handlebars
-
+## 🛠 Tecnologías utilizadas
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- Thunder Client (para testing de endpoints)
 
 ---
 
-## 🚀 Instalación
+## 📦 Funcionalidades implementadas
 
-2.  Instalar dependencias:
+### Productos
+- Crear producto
+- Listar productos
+- Obtener producto por ID
+- Actualizar producto
+- Eliminar producto
+
+### Carritos
+- Crear carrito
+- Obtener carrito por ID
+- Obtener todos los carritos
+- Agregar producto a un carrito
+- Actualizar cantidad de un producto en el carrito
+- Eliminar un producto del carrito
+- Vaciar carrito completo
+- Visualización de productos con `populate`
+
+---
+
+## 🚀 Instalación y ejecución del proyecto
+
+### 1️⃣ Clonar el repositorio
 ```bash
+git clone https://github.com/TU_USUARIO/backend-ecommerce-mongodb.git
+
+2️⃣ Instalar dependencias
 npm install
 
-Instalar Handlebars:
+3️⃣ Variables de entorno
 
-npm install express-handlebars
+Crear un archivo .env en la raíz del proyecto con el siguiente contenido:
 
-3. Instalar Socket.io:
-npm install socket.io
+PORT=8080
+MONGO_URL=mongodb://localhost:27017/ecommerce
 
-
-4. Ejecutar el servidor:
-
+4️⃣ Ejecutar el servidor
 node app.js
+El servidor se ejecutará por defecto en:
 
-El servidor corre en:
-👉 http://localhost:8080
+http://localhost:8080
 
-🖥️ Vistas del proyecto
-1. Home (vista normal)
+🌐 Endpoints disponibles
+📌 Productos
 
-Ruta:
+POST /api/products
 
-GET http://localhost:8080/
+GET /api/products
 
-2. RealTimeProducts (vista con WebSockets)
+GET /api/products/:pid
 
-Ruta:
+PUT /api/products/:pid
 
-GET http://localhost:8080/realtimeproducts
+DELETE /api/products/:pid
 
-Incluye:
+📌 Carritos
 
-Lista de productos que se actualiza en tiempo real
+POST /api/carts
 
-Formulario para crear productos
+GET /api/carts
 
-Formulario para eliminar productos
+GET /api/carts/:cid
 
-Comunicación vía Socket.io
+POST /api/carts/:cid/products/:pid
 
-Cuando se crea o elimina un producto:
+PUT /api/carts/:cid/products/:pid
 
-✔ Se escribe en products.json
-✔ Se emite un evento WebSocket
-✔ La lista se actualiza automáticamente sin recargar la página
+DELETE /api/carts/:cid/products/:pid
 
-🧠 Lógica WebSocket (Socket.io)
+DELETE /api/carts/:cid
 
-En app.js, el servidor emite:
+🧪 Testing
 
-products → para enviar la lista actualizada
+Los endpoints fueron probados utilizando Thunder Client, verificando:
 
-errorMessage → para manejar errores
+Creación y consulta de productos
 
-newProduct → para crear productos desde WebSocket
+Manejo de carritos
 
-deleteProduct → para eliminar productos
+Actualización de cantidades
 
-El cliente escucha y modifica el DOM en:
+Eliminación de productos
 
-public/js/realtime.js
+Persistencia correcta en MongoDB
 
-📦 API REST (Primera entrega integrada)
-Productos (/api/products)
+✅ Estado del proyecto
 
-✔ GET todos
-✔ GET por ID
-✔ POST crear
-✔ PUT actualizar
-✔ DELETE eliminar
+Proyecto finalizado y funcional según los requerimientos de la entrega final.
 
-Carritos (/api/carts)
 
-✔ POST crear carrito
-✔ GET ver productos del carrito
-✔ POST agregar productos al carrito
-
-Toda la persistencia se maneja mediante archivos JSON.
-
-📝 Tecnologías utilizadas
-
-Node.js
-
-Express
-
-Handlebars
-
-Socket.io
-
-JavaScript
-
-JSON para persistencia
-
-✔ Estado del proyecto
-
-Entrega Nº2 completa y funcional.
-
-Handlebars OK
-
-WebSockets OK
-
-Listas dinámicas OK
-
-Formularios funcionando
-
-Persistencia en JSON
-
-Estructura limpia y ordenada
-
-Autor
-
-Proyecto desarrollado por Nicolás Pombo para el curso Backend I - Coderhouse.
-
+Con eso el README queda **completo**.
 
 ---
 
-# 🔥 Si querés, también te preparo:
-✅ Un ZIP limpio para entregar  
-✅ Un video cortito explicando cómo funciona  
-✅ Una versión del README con capturas de pantalla  
+## ⚠️ 2️⃣ Cambio OBLIGATORIO (muy importante)
 
-¿Querés que arme el ZIP de entrega?
+Tenés esta línea:
 
+```md
+git clone https://github.com/Micaelarombola/backendI-FINAL
