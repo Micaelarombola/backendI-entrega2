@@ -1,3 +1,11 @@
+require("dotenv").config();
+const mongoose = require("mongoose");
+
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch(err => console.error("❌ MongoDB error:", err.message));
+
+
 const express = require('express');
 const path = require('path');
 const { createServer } = require('http');
